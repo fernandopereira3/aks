@@ -17,13 +17,13 @@ resource "aws_eks_cluster" "eks-dio" {
   role_arn = aws_iam_role.iam_role_aks.arn
 
   vpc_config {
-    subnet_ids = ["module.vpc.vpc-kubernetes-salao"]
+    subnet_ids = [ "module.vpc.public_subnets" ]
   }
 
-  # depends_on = [
-  #   aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy,
-  #   aws_iam_role_policy_attachment.example-AmazonEKSVPCResourceController,
-  # ]
+  depends_on = [
+    module.vpc.public_subnets,
+    module.vpc.private_subnets
+  ]
 }
 
 # output "endpoint" {
