@@ -17,13 +17,33 @@ resource "aws_eks_cluster" "eks-dio" {
   role_arn = aws_iam_role.iam_role_aks.arn
 
   vpc_config {
-    subnet_ids = [ "module.vpc.public_subnets" ]
+    subnet_ids = [ "module.vpc.public_subnets.id" ]
   }
 
   depends_on = [
-    module.vpc.public_subnets,
-    module.vpc.private_subnets
+    module.vpc
   ]
+}
+module "vpc"{
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.13.0"
+  name = "vpc-kubernetes-estudos"
+
+  cidr = "10.0.0.0/16"
+
+  azs             = ["us-west-2a"]
+  private_subnets = ["10.0.1.0/24"]
+  public_subnets  = ["10.0.101.0/24"]
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
+
+
+  tags = {
+    Environment = "Estudos"
+  }
+
+
 }
 
 # output "endpoint" {
