@@ -20,14 +20,5 @@ resource "aws_eks_cluster" "eks-dio" {
     subnet_ids = [aws_subnet.subnet-k8-dio1.id, aws_subnet.subnet-k8-dio2.id]
   }
 
-# depends_on = [ aws_subnet.subnet-k8-dio, aws_vpc.vpc-k8-dio ]
 
 }
-
-# output "endpoint" {
-#   value = aws_eks_cluster.example.endpoint
-# }
-
-# output "kubeconfig-certificate-authority-data" {
-#   value = aws_eks_cluster.example.certificate_authority[0].data
-# }
