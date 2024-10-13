@@ -13,7 +13,6 @@ Provider developed for AWS.
 ### How use
 
 In the project folder:
-start terraform:
 ```
 terraform init
 terraform plan
