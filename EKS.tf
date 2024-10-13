@@ -17,10 +17,10 @@ resource "aws_eks_cluster" "eks-dio" {
   role_arn = aws_iam_role.iam_role_aks.arn
 
   vpc_config {
-    subnet_ids = [aws_subnet.subnet-k8-dio.id]
+    subnet_ids = [aws_subnet.subnet-k8-dio1.id, aws_subnet.subnet-k8-dio2.id]
   }
 
-depends_on = [ aws_subnet.subnet-k8-dio, aws_vpc.vpc-k8-dio ]
+# depends_on = [ aws_subnet.subnet-k8-dio, aws_vpc.vpc-k8-dio ]
 
 }
 
