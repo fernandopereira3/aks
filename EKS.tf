@@ -20,5 +20,9 @@ resource "aws_eks_cluster" "eks-dio" {
     subnet_ids = [aws_subnet.subnet-k8-dio1.id, aws_subnet.subnet-k8-dio2.id]
   }
 
+  tags = {
+    Name = "Estudos DIO"
+    Enviroment = "Basic Simple"
+  }
 
 }
